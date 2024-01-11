@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+ 
+  <h1>User List</h1>
+  <ul>
+    <% users.forEach((user) => { %>
+      <li>
+        <strong><%= user.username %></strong>
+        (Email: <%= user.email %>, Age: <%= user.age %>)
+        <a href="/edit-user/<%= user._id %>">Edit</a>
+        <a href="/delete-user/<%= user._id %>">Delete</a>
+      </li>
+    <% }); %>
+  </ul>
+
+  <h2>Add User</h2>
+  <form action="/create-user" method="post">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="number" name="age" placeholder="Age" required>
+    <button type="submit">Add User</button>
+  </form>
+</body>
+</html>
